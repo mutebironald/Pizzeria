@@ -1,0 +1,17 @@
+
+PIZZA: id, name, price(e.g. Margherita $5, Pepperoni $6, ...)
+   /|\                |
+one to one            | many to one
+   |                  \/
+ORDER_ITEM : id, pizza_type(pizza_id), quantity, totalAMt
+
+
+many to many
+
+//order has items, list
+ORDER: id, [list of order_item represented by order_item_id ]
+
+
+
+
+if pivot, order_id, order_item
