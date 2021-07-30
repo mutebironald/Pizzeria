@@ -13,7 +13,11 @@ db.on('error', console.error.bind(console, 'OrderItem Model connection error'))
 const OrderItemSchema = new Schema({
     // id : { type: ObjectId },
     pizza_id: { type: ObjectId , ref: 'Pizza' },
-    quantity: { type: Number, required : true },
+    quantity: {
+        type: Number,
+        required : [ true, 'No quantity has been specified'],
+        min : [1, 'Minimum quantity is 1']
+    },
     totalAmount: { type: Number, required: true }
 })
 OrderItemSchema.plugin(require('mongoose-unique-validator'), { type: 'mongoose-unique-validator' });
