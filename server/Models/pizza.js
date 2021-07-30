@@ -11,7 +11,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Pizza Model connection error'))
 
 const PizzaSchema = new Schema({
-    _id: { type : ObjectId , unique: 'A Pizza with that id already exists'},
+    _id: { type : ObjectId },
     name: { 
         type: String,
         unique: 'A Pizza with the name ({VALUE}) already exists' ,
