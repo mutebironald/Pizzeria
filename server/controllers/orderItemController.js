@@ -1,18 +1,6 @@
 const OrderItemModel = require('../Models/orderItem');
 const PizzaModel = require('../Models/pizza');
 
-//There should be a "Create Order" function, 
-//the user can select pizza types and amounts, add to the order, 
-//see current total, and place (save) the order.
-
-
-// pizza_id: { type: ObjectId , ref: 'Pizza' },
-// quantity: {
-//     type: Number,
-//     required : [ true, 'No quantity has been specified'],
-//     min : [1, 'Minimum quantity is 1']
-// },
-// totalAmount: { type: Number, required: true }
 module.exports = {
     createOrder : async (req, res) => { 
         PizzaModel.findOne({ _id : req.body.pizza_id })
