@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const OrderItemModel = require('../Models/orderItem');
 
 //There should be a "Create Order" function, 
@@ -15,25 +14,14 @@ const OrderItemModel = require('../Models/orderItem');
 // totalAmount: { type: Number, required: true }
 module.exports = {
     createOrder : async (req, res) => {
-
-
-        //adrress this later
-        // let errors = {};
-        // //the user can select pizza types and amounts (pizza_id)
-        // if(!req.body.quantity) errors.quantity = 'No quantity has been specified';
-        // if(!Object.keys(errors).length) return res.status(400).json({ errors });
-
-
-
-
         try{
             let orderItem = new OrderItemModel({
                 quantity: req.body.quantity
             });
             let response = await orderItem.save();
-            res.json({ response });
+            res.json({ Order: response });
         }catch(err){
-            res.status(500).json({ error: err })
+            res.status(500).json({ error: err.message })
         }
     }
 }

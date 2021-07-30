@@ -11,13 +11,13 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Pizza Model connection error'))
 
 const PizzaSchema = new Schema({
-    _id: { type : ObjectId },
+    // _id: { type : ObjectId },
     name: { 
         type: String,
         unique: 'A Pizza with the name ({VALUE}) already exists' ,
         required: [true, 'A Pizza must have a name'],
-        minlength: 4,
-        maxlength : 200
+        minlength: [ 4, 'The length should have a minimum of 4 characters' ],
+        maxlength : [ 200, 'Maximum character length, 200 exceeded']
     },
     price: {
         type: Number,
