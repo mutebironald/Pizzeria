@@ -40,5 +40,4 @@ class Singleton {
 }
 
 
-
 module.exports = Singleton;
