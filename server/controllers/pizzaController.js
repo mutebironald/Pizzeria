@@ -8,7 +8,14 @@ module.exports = {
                 price: req.body.price
             });
             let response = await pizza.save();
-            res.json({ 'message': 'Pizza successfully created', Pizza:response })
+            res.json({
+                'message': 'Pizza successfully created',
+                pizza:{
+                    _id: response._id,
+                    name: response.name,
+                    price: response.price
+                }
+            })
         }catch(err){
             res.status(500).json({ errror: err.message })
         }
