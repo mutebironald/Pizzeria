@@ -6,12 +6,12 @@ const { createOrder, getOrders, getOrderDetails } = require('../controllers/orde
 // const { getItems } = require('../controllers/orderController');
 
 
-router.post('/create/pizza',createPizza)
-router.get('/menu/pizzas', getPizzas);
+router.post('/pizzas', createPizza)
+router.get('/pizzas', getPizzas);
 
-router.post('/create/order', createOrder)
-router.get('/orders', getOrders);
-router.get('/order/:id', getOrderDetails);
+router.post('/orders', createOrder)
+router.get('/orders',  getOrders);
+router.get('/orders/:id', getOrderDetails);
 
 // router.get('/items', getItems);
 

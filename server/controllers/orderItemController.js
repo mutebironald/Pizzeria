@@ -12,7 +12,7 @@ module.exports = {
                     totalAmount: pizza.price * req.body.quantity
                 });
                 orderItem.save().then( response => {
-                    res.json({ Order: { name: pizza.name, price: pizza.price, quantity: response.quantity, totalAmount: response.totalAmount } });
+                    res.status(201).json({ Order: { name: pizza.name, price: pizza.price, quantity: response.quantity, totalAmount: response.totalAmount } });
                 }).catch(err => res.status(500).json({ error: err.message }));  
             })
             .catch(err => res.status(500).json({ error: 'The Pizza you want to order is inexistent' }))
@@ -34,7 +34,7 @@ module.exports = {
                 PizzaModel.findOne({ _id: order.pizza_id })
                     .exec()
                     .then(pizza => {
-                        res.json({
+                        res.status(200).json({
                             name: pizza.name,
                             price: pizza.price,
                             quantity: order.quantity,
@@ -43,5 +43,7 @@ module.exports = {
                     }).catch(err => res.status(500).json({ error: err.message }));
             }).catch(err => res.status(500).json({ error: 'The order id passed is inexistent' }));
     },
+
+    //future additions include the ability to update an order, delete an order
 
 }

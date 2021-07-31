@@ -8,7 +8,7 @@ module.exports = {
                 price: req.body.price
             });
             let response = await pizza.save();
-            res.json({
+            res.status(201).json({
                 'message': 'Pizza successfully created',
                 pizza:{
                     _id: response._id,
@@ -27,5 +27,10 @@ module.exports = {
             res.status(200).json({ pizzas, length: pizzas.length });
         });
     }
+
+    //potential additions
     //could add the update and deletion of pizza offerings.
+    //in the update, i would query the model by id passed via query param and update the record
+
+    //in deletion, i would query the model by id , if present i proceed with the deletion
 }
