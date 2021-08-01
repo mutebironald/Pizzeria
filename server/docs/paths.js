@@ -6,8 +6,8 @@ const registerUser = require("./users/registerUser");
 
 module.exports = {
     paths: {
-        '/login' : loginUser,
         '/register': registerUser,
+        '/login' : loginUser,
         '/pizzas' : pizzas,
         '/orders' : orders,
         '/orders/{id}' : getSpecificOrder
