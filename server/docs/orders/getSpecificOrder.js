@@ -13,7 +13,7 @@ module.exports = {
             name: "id",
             in: "path",
             schema: {
-            $ref: "#/components/schemas/id",
+            $ref: "#/components/schemas/OrderId",
             },
             required: true,
             description: "The order id", 

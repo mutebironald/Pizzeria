@@ -1,7 +1,7 @@
 
 const { servers } =  require('./servers')
 const { tags } =  require('./tags')
-const { components } = require('./pizzas/components')
+const { components } = require('./components')
 const { paths } = require('./paths')
 
 const swaggerDocument = {

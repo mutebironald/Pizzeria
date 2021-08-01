@@ -4,10 +4,11 @@ module.exports = {
         name: "Users CRUD operations",
       },
       {
-        name: "Orders CRUD operations",
+        name: "Pizzas CRUD operations",
       },
       {
-        name: "Pizzas CRUD operations",
-      }
+        name: "Orders CRUD operations",
+      },
+
     ],
 };

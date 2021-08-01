@@ -8,10 +8,10 @@ module.exports = {
           }
       },
       schemas: {
-        id: {
+        OrderId: {
             type: "string", 
             description: "order Id",
-            example: "610587b86351a38b18643e35",
+            example: "Enter Order Id (_id)",
         },
         User: {
             type: "object", 
@@ -59,7 +59,7 @@ module.exports = {
             pizza_id: {
               type: "string",
               description: "Pizza id", 
-              example: "610587b86351a38b18643e35",
+              example: "Enter pizza id (_id)",
             },
             quantity: {
               type: "number",
