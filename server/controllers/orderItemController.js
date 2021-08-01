@@ -30,7 +30,7 @@ module.exports = {
                     });
                 }).catch(err => res.status(500).json({ error: err.message }));  
             })
-            .catch(err => res.status(500).json({ error: 'The Pizza you want to order is inexistent' }))
+            .catch(err => res.status(400).json({ error: 'The Pizza you want to order is inexistent' }))
         // 
         
     },

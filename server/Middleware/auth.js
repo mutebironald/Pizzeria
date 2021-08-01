@@ -4,7 +4,7 @@ const config = process.env;
 
 const verifyToken = (req, res, next) => {
   const token =
-    req.body.authorization || req.query.authorization || req.headers["authorization"];
+    req.body.authorization || req.query.authorization ||req.headers['authorization'].split(' ')[1];
 
   if (!token) {
     return res.status(403).send("A token is required for authentication");
