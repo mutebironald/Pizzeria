@@ -14,7 +14,6 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Order Model connection error'))
 
-
 const OrderSchema = new Schema({
     // order_id : { type: ObjectId },
     items: [ { type: ObjectId , ref: 'OrderItem'}]
