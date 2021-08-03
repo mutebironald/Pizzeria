@@ -23,7 +23,7 @@ router.post('/login', loginUser)
 router.post('/pizzas', auth , createPizza)
 router.get('/pizzas', getPizzas);
 
-router.post('/orders', createOrder)
+router.post('/orders', auth, createOrder)
 router.get('/orders', auth,  getOrders);
 router.get('/orders/:id', auth , getOrderDetails);
 

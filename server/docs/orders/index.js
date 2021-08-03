@@ -1,5 +1,10 @@
 module.exports = {
     post: {
+        security: [
+          {
+              bearerAuth: [],
+          }
+        ],
         tags: ["Orders CRUD operations"], 
         description: "Create Order", 
         operationId: "createOrder", 
