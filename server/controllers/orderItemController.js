@@ -71,6 +71,51 @@ module.exports = {
         }
     },
 
-    //future additions include the ability to update an order, delete an order
+    updateOrder: async (req, res) => {
+        if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+            return res.status(400).json({ error: 'Enter a valid Order id' });
+        }
+        let order = await OrderItemModel.findById({ _id : req.params.id});
+        if(!order) return res.status(400).json({ error: 'The Order is inexistent' });
+        let pizza = await PizzaModel.findOne({ _id: req.body.pizza_id });
+        if(!pizza) return res.status(400).json({ error: 'The Pizza is inexistent' })
+        let tempTotal = pizza.price * req.body.quantity;
+        let discount = 0;
+        if(tempTotal > 50 && tempTotal < 100){
+            discount = (5/100) * tempTotal;
+        }else if(tempTotal >= 100){
+            discount = (10/100) * tempTotal;
+        }
+        let totalAmount = tempTotal - discount;
+        await OrderItemModel.findByIdAndUpdate(req.params.id, {
+            pizza_id : req.body.pizza_id,
+            quantity: req.body.quantity,
+            totalAmount
+        }, {new: true},  (err, order) => {
+            if(err) return res.status(500).json({ error: err.message })
+            return res.status(200).json({ 
+                order : {
+                    pizza_id: order.pizza_id,
+                    quantity: order.quantity,
+                    totalAmount: tempTotal - discount,
+                    discount
 
+                }
+            });
+        })
+    },
+
+    deleteOrder: async (req, res) => {
+        if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+            return res.status(400).json({ error: 'Enter a valid Order id' });
+        }
+        let order = OrderItemModel.findById({_id : req.params.id});
+        if(!order) return res.status(404).json({ message: "The specific order isn't available" })
+        try{
+            await OrderItemModel.deleteOne({ _id : req.params.id });
+            res.status(200).json({ message: 'Order successfully deleted'})
+        }catch(err){
+            return res.status(500).json({ error: err.message })
+        }
+    }
 }

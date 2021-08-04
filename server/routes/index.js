@@ -7,8 +7,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument =  require('../docs');
 
 
-const { createPizza , getPizzas} = require('../controllers/pizzaController');
-const { createOrder, getOrders, getOrderDetails } = require('../controllers/orderItemController');
+const { createPizza , getPizzas, updatePizza, deletePizza } = require('../controllers/pizzaController');
+const { createOrder, getOrders, getOrderDetails, updateOrder, deleteOrder } = require('../controllers/orderItemController');
 // const { getItems } = require('../controllers/orderController');
 
 const { registerUser , loginUser } = require('../controllers/userController')
@@ -22,10 +22,14 @@ router.post('/login', loginUser)
 
 router.post('/pizzas', auth , createPizza)
 router.get('/pizzas', getPizzas);
+router.put('/pizzas/:id', updatePizza);
+router.delete('/pizzas/:id', deletePizza);
 
 router.post('/orders', auth, createOrder)
 router.get('/orders', auth,  getOrders);
 router.get('/orders/:id', auth , getOrderDetails);
+router.put('/orders/:id', updateOrder);
+router.delete('/orders/:id', deleteOrder);
 
 // router.get('/items', getItems);
 
