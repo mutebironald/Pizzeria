@@ -13,6 +13,11 @@ module.exports = {
             description: "order Id",
             example: "Enter Order Id (_id)",
         },
+        PizzaId: {
+          type: "string", 
+          description: "pizza Id",
+          example: "Enter Pizza Id (_id)",
+      },
         User: {
             type: "object", 
             properties: {
@@ -71,6 +76,21 @@ module.exports = {
               description: "The total amount/cost of the pizzas purchased",
               example: 10,  
             },
+          },
+        },
+        UpdateOrderItem: {
+          type: "object",
+          properties: {
+            pizza_id: {
+              type: "string",
+              description: "Pizza id", 
+              example: "Enter pizza id (_id)",
+            },
+            quantity: {
+              type: "number",
+              description: "number of pizzas ordered", 
+              example: 2, 
+            }
           },
         },
       },

@@ -22,14 +22,14 @@ router.post('/login', loginUser)
 
 router.post('/pizzas', auth , createPizza)
 router.get('/pizzas', getPizzas);
-router.put('/pizzas/:id', updatePizza);
-router.delete('/pizzas/:id', deletePizza);
+router.put('/pizzas/:id', auth,  updatePizza);
+router.delete('/pizzas/:id', auth, deletePizza);
 
 router.post('/orders', auth, createOrder)
 router.get('/orders', auth,  getOrders);
 router.get('/orders/:id', auth , getOrderDetails);
-router.put('/orders/:id', updateOrder);
-router.delete('/orders/:id', deleteOrder);
+router.put('/orders/:id', auth, updateOrder);
+router.delete('/orders/:id', auth,  deleteOrder);
 
 // router.get('/items', getItems);
 

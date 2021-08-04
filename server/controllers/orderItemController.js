@@ -109,10 +109,12 @@ module.exports = {
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){
             return res.status(400).json({ error: 'Enter a valid Order id' });
         }
-        let order = OrderItemModel.findById({_id : req.params.id});
-        if(!order) return res.status(404).json({ message: "The specific order isn't available" })
+
         try{
-            await OrderItemModel.deleteOne({ _id : req.params.id });
+            OrderItemModel.findById({_id : req.params.id}, (err, order) => {
+                if(!order) return res.status(404).json({ message: "The specific order isn't available" })
+            });
+            await OrderItemModel.findByIdAndDelete({ _id : req.params.id });
             res.status(200).json({ message: 'Order successfully deleted'})
         }catch(err){
             return res.status(500).json({ error: err.message })

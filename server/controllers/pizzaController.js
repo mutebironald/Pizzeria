@@ -34,11 +34,12 @@ module.exports = {
             return res.status(400).json({ error: 'Enter a valid Pizza id' });
         }
         await PizzaModel.findByIdAndUpdate(req.params.id, {name: req.body.name, price: req.body.price}, {new: true},
-            function(err, pizza){
-                if(err){
-                    return res.status(500).json({ error: err.message })
+            (err, pizza) => {
+                if(!pizza){
+                    return res.status(400).json({ error: 'Pizza not found' });
                 }
-                return res.status(200).json({ pizza })
+                if(err) return res.status(400).json({ error: err })
+                if(pizza) return res.status(200).json({ pizza })
             }
         )
     },
@@ -47,15 +48,14 @@ module.exports = {
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){
             return res.status(400).json({ error: 'Enter a valid Pizza id' });
         }
-
-        let pizza = await PizzaModel.findById({_id : req.params.id });
-        if(!pizza) return res.status(404).json({ message: "The specific pizza isn't available" })
         try{
+            PizzaModel.findById({_id : req.params.id}, (err, pizza) => {
+                if(!pizza) return res.status(404).json({ message: "The specific pizza isn't available" })
+            });
             await PizzaModel.deleteOne({_id : req.params.id })
             res.status(200).json({ message: 'Pizza successfully deleted'})
         }catch(err){
-            console.log("error", err)
-            return res.status(500).json({ error: err.message })
+            return res.status(500).json({ error: err })
         }
     }
 
