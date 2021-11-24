@@ -17,4 +17,4 @@ Additionally, the JSON API provides:
 * details of an individual order
 * order bonuses e.g. 5% cheaper when total over $50
 
-The hosted [API](https://pizzeriaheroku.herokuapp.com/api/docs) 
+Linked is the hosted [API](https://pizzeriaheroku.herokuapp.com/api/docs) 
