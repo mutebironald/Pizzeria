@@ -2,10 +2,7 @@ const jwt = require("jsonwebtoken");
 const redis = require('redis');
 
 const config = process.env;
-const redisClient = redis.createClient({
-  host: 'localhost',
-  port: 6379
-})
+const redisClient = require('./redis')
 
 const verifyToken = async(req, res, next) => {
 

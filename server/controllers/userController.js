@@ -1,6 +1,7 @@
 const User = require('../Models/user');
 const jwt  = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const redisClient = require('../Middleware/redis');
 
 module.exports = {
     registerUser: async (req, res) => {
