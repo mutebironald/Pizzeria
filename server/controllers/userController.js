@@ -31,6 +31,8 @@ module.exports = {
                     expiresIn: "2h"
                 }
             );
+            //store token in redis
+            redisClient.set(userId.toString(), token);
             user.token = token;
             res.status(201).json({
                 "message": `Hello ${user.first_name}, you have successfully registered proceed to login`
