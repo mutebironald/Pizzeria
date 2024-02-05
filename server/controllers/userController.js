@@ -1,6 +1,7 @@
 const User = require('../Models/user');
 const jwt  = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const redisClient = require('../Middleware/redis');
 
 module.exports = {
     registerUser: async (req, res) => {
@@ -31,6 +32,8 @@ module.exports = {
                     expiresIn: "2h"
                 }
             );
+            //store token in redis
+            redisClient.set(userId.toString(), token);
             user.token = token;
             res.status(201).json({
                 "message": `Hello ${user.first_name}, you have successfully registered proceed to login`
